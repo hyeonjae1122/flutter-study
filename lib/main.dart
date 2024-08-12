@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/data/repository/location_repository_impl.dart';
 import 'package:flutter_study/data/repository/mock_location_repository.dart';
 import 'package:flutter_study/data/repository/mock_store_repository.dart';
+import 'package:flutter_study/data/repository/sotre_repository_impl.dart';
 import 'package:flutter_study/ui/main_screen.dart';
 import 'package:flutter_study/ui/main_view_model.dart';
 import 'package:provider/provider.dart';
@@ -25,8 +27,8 @@ class MyApp extends StatelessWidget {
       home:  ChangeNotifierProvider<MainViewModel>(
           create: (BuildContext context) {
             return MainViewModel(
-            storeRepository: MockStoreRepository(),
-            locationRepository: MockLocationRepository());
+            storeRepository: StoreRepositoryImpl(),
+            locationRepository: LocationRepositoryImpl());
           },
         child: const MainScreen(),
         )
