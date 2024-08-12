@@ -3,6 +3,7 @@ import 'package:flutter_study/data/repository/mock_location_repository.dart';
 import 'package:flutter_study/data/repository/mock_store_repository.dart';
 import 'package:flutter_study/ui/main_screen.dart';
 import 'package:flutter_study/ui/main_view_model.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,11 +22,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MainScreen(
-        viewModel: MainViewModel(
+      home:  ChangeNotifierProvider<MainViewModel>(
+          create: (BuildContext context) {
+            return MainViewModel(
             storeRepository: MockStoreRepository(),
-            locationRepository: MockLocationRepository()),
-      ),
+            locationRepository: MockLocationRepository());
+          },
+        child: const MainScreen(),
+        )
     );
   }
 }
